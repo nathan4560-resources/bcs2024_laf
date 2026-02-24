@@ -29,8 +29,8 @@ A web-based lost and found system for Quest International University built with 
 ## Setup
 
 ### Prerequisites
-- Node.js 18+
-- MySQL 8+
+- Node.js
+- MySQL
 
 ### Installation
 
@@ -78,6 +78,6 @@ These can be changed in the `.env` file.
 
 ## Tech Stack
 - **Backend:** Express.js, mysql2, express-validator, bcryptjs, jsonwebtoken
-- **Frontend:** Vanilla JS, CSS3
+- **Frontend:** HTML, CSS and JavaScript
 - **Database:** MySQL 8
 - **Security:** Helmet, CORS headers, parameterized queries
