@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quest Campus Lost &amp; Found</title>
+    <meta
+      name="description"
+      content="Campus Lost & Found Management System for Quest International University."
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+    <header class="site-header">
+      <div class="container header-shell">
+        <div class="header-brand">
+          <p class="eyebrow">Quest International University</p>
+          <h1>Campus Lost &amp; Found</h1>
+          <p class="subheading">
+            Report lost or found items, track status, and connect with the security office.
+          </p>
+        </div>
+        <div class="header-actions">
+          <span id="admin-badge" class="admin-badge hidden">Admin</span>
+          <button id="admin-toggle" class="admin-toggle-btn" type="button">
+            &#x1F512; Admin Panel
+          </button>
+          <button id="logout-btn" class="logout-btn hidden" type="button">
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ NAVIGATION TABS ══════════════════════════════════════ -->
+    <nav class="nav-tabs" aria-label="Main navigation">
+      <div class="container nav-tabs-inner">
+        <button class="nav-tab active" data-tab="report-lost" type="button">
+          &#x1F50D; Report Lost Item
+        </button>
+        <button class="nav-tab" data-tab="report-found" type="button">
+          &#x1F4E6; Report Found Item
+        </button>
+        <button class="nav-tab" data-tab="view-items" type="button">
+          &#x1F4CB; View Items
+        </button>
+        <button class="nav-tab hidden" data-tab="admin-login" id="tab-admin-login" type="button">
+          &#x1F512; Admin Login
+        </button>
+        <button class="nav-tab hidden" data-tab="admin-manage" id="tab-admin-manage" type="button">
+          &#x2699;&#xFE0F; Manage Items
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═════════════════════════════════════════ -->
+    <main id="main-content" class="container">
+
+      <!-- ── TAB: Report Lost Item ─────────────────────────────── -->
+      <section id="tab-content-report-lost" class="tab-content active">
+        <div class="panel" style="max-width: 640px; margin: 0 auto;">
+          <div class="panel-header">
+            <h2>&#x1F50D; Report a Lost Item</h2>
+            <p>Fill out the form below to report an item you have lost on campus.</p>
+          </div>
+          <form id="report-lost-form" class="form-grid" novalidate>
+            <div id="sql-warning-lost" class="sql-warning">
+              &#x26A0; Submission rejected: your input contains patterns that resemble SQL injection. Please remove any special characters or code-like syntax.
+            </div>
+            <div class="form-group">
+              <label for="lost-title">Item Title</label>
+              <input id="lost-title" name="title" maxlength="100" placeholder="e.g. Black Wallet" required />
+            </div>
+            <div class="form-group">
+              <label for="lost-description">Description</label>
+              <textarea id="lost-description" name="description" rows="3" maxlength="1000" placeholder="Describe the item in detail..." required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="lost-location">Location Last Seen</label>
+                <input id="lost-location" name="location" maxlength="120" placeholder="e.g. Library Level 2" required />
+              </div>
+              <div class="form-group">
+                <label for="lost-date">Date</label>
+                <input id="lost-date" name="itemDate" type="date" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lost-contact">Contact Information</label>
+              <input id="lost-contact" name="contactInfo" maxlength="120" placeholder="Email or phone number" required />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Submit Lost Report</button>
+            <p id="lost-feedback" class="feedback" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ── TAB: Report Found Item ────────────────────────────── -->
+      <section id="tab-content-report-found" class="tab-content">
+        <div class="panel" style="max-width: 640px; margin: 0 auto;">
+          <div class="panel-header">
+            <h2>&#x1F4E6; Report a Found Item</h2>
+            <p>Fill out the form below to report an item you have found on campus.</p>
+          </div>
+          <form id="report-found-form" class="form-grid" novalidate>
+            <div id="sql-warning-found" class="sql-warning">
+              &#x26A0; Submission rejected: your input contains patterns that resemble SQL injection. Please remove any special characters or code-like syntax.
+            </div>
+            <div class="form-group">
+              <label for="found-title">Item Title</label>
+              <input id="found-title" name="title" maxlength="100" placeholder="e.g. Blue Water Bottle" required />
+            </div>
+            <div class="form-group">
+              <label for="found-description">Description</label>
+              <textarea id="found-description" name="description" rows="3" maxlength="1000" placeholder="Describe the item in detail..." required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="found-location">Location Found</label>
+                <input id="found-location" name="location" maxlength="120" placeholder="e.g. Block A Cafeteria" required />
+              </div>
+              <div class="form-group">
+                <label for="found-date">Date</label>
+                <input id="found-date" name="itemDate" type="date" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="found-contact">Contact Information</label>
+              <input id="found-contact" name="contactInfo" maxlength="120" placeholder="Email or phone number" required />
+            </div>
+            <button class="btn btn-accent btn-block" type="submit">Submit Found Report</button>
+            <p id="found-feedback" class="feedback" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ── TAB: View Items ───────────────────────────────────── -->
+      <section id="tab-content-view-items" class="tab-content">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>&#x1F4CB; Lost &amp; Found Board</h2>
+            <p>Browse all reported items. Contact the reporter or visit the security office to claim.</p>
+          </div>
+
+          <section class="stats-grid" aria-label="Item report summary">
+            <article class="stat-card">
+              <p class="stat-label">Total Reports</p>
+              <p class="stat-value" id="stat-total">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Pending</p>
+              <p class="stat-value" id="stat-pending">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Claimed</p>
+              <p class="stat-value" id="stat-claimed">0</p>
+            </article>
+          </section>
+
+          <div class="filters-bar">
+            <div class="form-group">
+              <label for="searchInput">Search</label>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search title, location, or description..."
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group compact">
+              <label for="statusFilter">Status</label>
+              <select id="statusFilter">
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="claimed">Claimed</option>
+              </select>
+            </div>
+            <button id="refresh-btn" class="btn btn-outline btn-sm refresh-btn" type="button">
+              &#x1F504; Refresh
+            </button>
+          </div>
+          <p id="board-feedback" class="feedback" aria-live="polite" style="margin-bottom: 0.75rem;"></p>
+
+          <div class="columns">
+            <section class="column">
+              <h3><span class="column-icon">&#x1F50D;</span> Lost Items</h3>
+              <div id="lost-list" class="item-list" aria-live="polite"></div>
+            </section>
+            <section class="column">
+              <h3><span class="column-icon">&#x1F4E6;</span> Found Items</h3>
+              <div id="found-list" class="item-list" aria-live="polite"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TAB: Admin Login ──────────────────────────────────── -->
+      <section id="tab-content-admin-login" class="tab-content">
+        <div class="panel login-panel">
+          <div class="panel-header" style="text-align: center;">
+            <div class="login-icon">&#x1F512;</div>
+            <h2>Admin Login</h2>
+            <p>Enter your admin credentials to access item management.</p>
+          </div>
+          <form id="admin-login-form" class="form-grid" novalidate>
+            <div id="sql-warning-login" class="sql-warning">
+              &#x26A0; Login rejected: your input contains patterns that resemble SQL injection.
+            </div>
+            <div class="form-group">
+              <label for="admin-username">Username</label>
+              <input id="admin-username" name="username" maxlength="50" placeholder="Enter admin username" required autocomplete="username" />
+            </div>
+            <div class="form-group">
+              <label for="admin-password">Password</label>
+              <input id="admin-password" name="password" type="password" maxlength="128" placeholder="Enter admin password" required autocomplete="current-password" />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Login</button>
+            <p id="login-feedback" class="feedback" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ── TAB: Admin Manage Items ───────────────────────────── -->
+      <section id="tab-content-admin-manage" class="tab-content">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>&#x2699;&#xFE0F; Manage Items</h2>
+            <p>Update item status or delete reports. Status changes:
+              <strong>Claimed</strong> moves lost items to found,
+              <strong>Resolved</strong> removes the item entirely.
+            </p>
+          </div>
+
+          <div class="filters-bar">
+            <div class="form-group">
+              <label for="adminSearchInput">Search</label>
+              <input id="adminSearchInput" type="search" placeholder="Search items..." autocomplete="off" />
+            </div>
+            <div class="form-group compact">
+              <label for="adminCategoryFilter">Category</label>
+              <select id="adminCategoryFilter">
+                <option value="">All</option>
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+              </select>
+            </div>
+            <div class="form-group compact">
+              <label for="adminStatusFilter">Status</label>
+              <select id="adminStatusFilter">
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="claimed">Claimed</option>
+              </select>
+            </div>
+            <button id="admin-refresh-btn" class="btn btn-outline btn-sm refresh-btn" type="button">
+              &#x1F504; Refresh
+            </button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Contact</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body">
+                <tr><td colspan="8" style="text-align:center; padding:2rem;">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ═══ DETAIL DIALOG ════════════════════════════════════════ -->
+    <dialog id="detail-dialog">
+      <article>
+        <h3 id="dialog-title">Item Details</h3>
+        <dl id="dialog-content"></dl>
+        <div class="dialog-actions">
+          <button id="dialog-close" class="btn btn-outline" type="button">Close</button>
+        </div>
+      </article>
+    </dialog>
+
+    <!-- ═══ CONFIRM DIALOG ═══════════════════════════════════════ -->
+    <dialog id="confirm-dialog" class="confirm-dialog">
+      <article>
+        <div class="confirm-icon" id="confirm-icon">&#x26A0;</div>
+        <h3 id="confirm-title">Confirm Action</h3>
+        <p id="confirm-message">Are you sure you want to proceed?</p>
+        <div class="dialog-actions">
+          <button id="confirm-cancel" class="btn btn-outline" type="button">Cancel</button>
+          <button id="confirm-ok" class="btn btn-danger" type="button">Confirm</button>
+        </div>
+      </article>
+    </dialog>
+
+    <!-- ═══ TOAST REGION ═════════════════════════════════════════ -->
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
