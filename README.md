@@ -51,9 +51,6 @@ npm start        # Production
 npm run dev      # Development (with nodemon)
 ```
 
-### Default Admin Credentials
-- **Username:** `admin`
-- **Password:** `admin123`
 
 These can be changed in the `.env` file.
 
