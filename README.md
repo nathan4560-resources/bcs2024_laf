@@ -84,3 +84,9 @@ These can be changed in the `.env` file.
 - **Frontend:** HTML, CSS and JavaScript
 - **Database:** MySQL 8
 - **Security:** Helmet, CORS headers, parameterized queries
+
+## Exclusions (Done using .gitignore)
+Those are the files that are excluded from github uploads: 
+- **node_modules/**
+- **.env**
+- **Some log files**
