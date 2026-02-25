@@ -5,16 +5,19 @@ A web-based lost and found system for Quest International University built with 
 ## Features
 
 ### Student Side (Public)
-- **Report Lost Item** — Submit a report when you lose something on campus
+- **Report Lost Item** — Submit a report when you lose something on campus.
 - **Report Found Item** — Submit a report when you find something on campus
 - **View Items** — Browse all lost and found items with search and filter
 
 ### Admin Side (Authenticated)
 - **Login** — Secure admin authentication with JWT tokens
 - **Manage Items** — Update item status and delete reports
-  - **Pending** → Default status for new reports
-  - **Claimed** → Moves lost items to the found category automatically
-  - **Resolved** → Permanently deletes the item (with confirmation)
+  - **Pending** → By default, anything added from student who report lost or found items belongs there.
+  - **Claimed** → If anything is Claimed, it will move to Claimed status. We can always move it back to Pending or close the case by setting the status to Resolved.
+  - **Resolved** → This will mark the report as resolved and also deletes the entry. This action is permanent and cannot be undone.
+
+### Justification of the student & admin side access restrictions
+This is to make sure that student will be able to report anything lost and found and also view the items that are lost or found, but not modify it by deleting the entries.
 
 ### Security
 - **SQL Injection Prevention** — Dual-layer protection:
